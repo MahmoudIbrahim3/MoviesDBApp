@@ -17,7 +17,7 @@
         android:layout_marginEnd="@dimen/margin_16">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivThumbnail"
+            android:id="@+id/ivPosterImage"
             android:layout_width="0dp"
             android:layout_height="0dp"
             tools:src="@drawable/ic_launcher_foreground"
@@ -39,7 +39,7 @@
             tools:text="@tools:sample/lorem"
             android:layout_marginTop="@dimen/margin_16"
             android:layout_marginStart="@dimen/margin_16"
-            app:layout_constraintStart_toEndOf="@id/ivThumbnail"
+            app:layout_constraintStart_toEndOf="@id/ivPosterImage"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -49,7 +49,7 @@
             style="@style/SecondaryTextView"
             tools:text="April 23, 2021"
             android:layout_marginStart="@dimen/margin_16"
-            app:layout_constraintStart_toEndOf="@id/ivThumbnail"
+            app:layout_constraintStart_toEndOf="@id/ivPosterImage"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"/>
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -63,7 +63,7 @@
             android:layout_marginTop="@dimen/margin_16"
             android:layout_marginStart="@dimen/margin_16"
             android:paddingBottom="@dimen/margin_16"
-            app:layout_constraintStart_toEndOf="@id/ivThumbnail"
+            app:layout_constraintStart_toEndOf="@id/ivPosterImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvDate"/>
 

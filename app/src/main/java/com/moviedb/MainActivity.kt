@@ -23,7 +23,7 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
         setUpActionBar()
     }
 
-    private fun setUpActionBar() {
+    fun setUpActionBar() {
         setSupportActionBar(toolbar)
     }
 
@@ -36,6 +36,7 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
     }
 
     fun setActionBarTitle(title: String?, isDisplayHome: Boolean) {
+        showActionBar()
         supportActionBar?.setDisplayHomeAsUpEnabled(isDisplayHome)
         supportActionBar?.title = title
         if (isDisplayHome)

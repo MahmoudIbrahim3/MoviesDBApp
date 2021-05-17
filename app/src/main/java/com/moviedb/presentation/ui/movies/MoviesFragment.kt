@@ -67,11 +67,18 @@ class MoviesFragment : BaseFragment() {
 
     override fun onStart() {
         super.onStart()
-        (activity as MainActivity).setActionBarTitle(getString(R.string.popular_movies), false)
+        setUpActionBar()
+    }
+
+    private fun setUpActionBar() {
+        val act = (activity as MainActivity)
+        act.setUpActionBar()
+        act.setActionBarTitle(getString(R.string.popular_movies), false)
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProvider(this, viewModelFactory).get(MoviesViewModel::class.java)
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(MoviesViewModel::class.java)
     }
 
     private fun setupRecyclerView() {
@@ -100,8 +107,8 @@ class MoviesFragment : BaseFragment() {
 
     private fun initOnMoviesClickLiveData() {
         adapter.onMovieClickedLiveData.observe(viewLifecycleOwner, Observer {
-            val arg = Bundle()
-            arg.putString(AppConst.INTENT_ITEM_ENTITY, Gson().toJson(it, MovieEntity::class.java))
+            val arg = setUpBundle(it)
+
             if (twoPane) {
                 navigateToMovieDetailsFragment(arg)
             } else {
@@ -128,13 +135,16 @@ class MoviesFragment : BaseFragment() {
 
     private fun showFirstArticleForTwoPane() {
         if (twoPane) {
-            val arg = Bundle()
-            arg.putString(
-                AppConst.INTENT_ITEM_ENTITY,
-                Gson().toJson(adapter.getItems()[0], MovieEntity::class.java)
-            )
+            val arg = setUpBundle(adapter.getItems()[0])
             navigateToMovieDetailsFragment(arg)
         }
+    }
+
+    private fun setUpBundle(movieEntity: MovieEntity): Bundle {
+        val arg = Bundle()
+        arg.putInt(AppConst.INTENT_ID, movieEntity.id)
+        arg.putString(AppConst.INTENT_TITLE, movieEntity.title)
+        return arg
     }
 
     private fun initSwipeToRefresh() {

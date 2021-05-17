@@ -61,7 +61,7 @@ class MoviesRecyclerViewAdapter()
     fun resetItems() = items.clear()
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val ivThumbnail: ImageView = view.findViewById(R.id.ivThumbnail)
+        val ivThumbnail: ImageView = view.findViewById(R.id.ivPosterImage)
         val tvTitle: TextView = view.findViewById(R.id.tvTitle)
         val tvDate: TextView = view.findViewById(R.id.tvDate)
         val tvDescription: TextView = view.findViewById(R.id.tvDescription)

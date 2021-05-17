@@ -1,6 +1,6 @@
 package com.moviedb.data.remote.api
 
-import com.moviedb.core.entities.MovieEntity
+import com.moviedb.core.entities.MovieDetailsEntity
 import com.moviedb.core.entities.PopularMovies
 import com.moviedb.data.remote.ApiFactory
 import retrofit2.http.GET
@@ -17,7 +17,7 @@ interface MovieApi {
 
     @GET(ApiFactory.GET_MOVIE_DETAILS)
     suspend fun loadMovieDetails(
-        @Query("api_key") apiKey: String,
-        @Path("movie_id") movieId: Int
-    ): MovieEntity
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String
+    ): MovieDetailsEntity
 }

@@ -14,7 +14,7 @@ class MovieRepository(private val movieApi: MovieApi): MovieGateWay {
 
     override suspend fun loadMovieDetails(movieId: Int) =
         movieApi.loadMovieDetails(
-            AppConst.API_KEY,
-            movieId
+            movieId,
+            AppConst.API_KEY
         )
 }

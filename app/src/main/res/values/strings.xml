@@ -8,4 +8,6 @@
     <string name="ok">Ok</string>
     <string name="no_data">No data</string>
     <string name="popular_movies">Popular Movies</string>
+    <string name="overview">Overview</string>
+    <string name="user_score">User Score</string>
 </resources>

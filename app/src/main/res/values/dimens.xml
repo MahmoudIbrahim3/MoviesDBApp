@@ -12,7 +12,7 @@
     <dimen name="margin_16">16dp</dimen>
 
     <!-- Text Sizes -->
-    <dimen name="size_large_text">18sp</dimen>
+    <dimen name="size_large_text">20sp</dimen>
     <dimen name="size_primary_text">16sp</dimen>
     <dimen name="size_secondary_text">14sp</dimen>
     <dimen name="size_third_text">12sp</dimen>
