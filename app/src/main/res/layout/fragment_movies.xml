@@ -18,8 +18,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvItems"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layoutManager="LinearLayoutManager" />
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/fragment_movies_item"
+            android:background="@color/app_background"
+            android:paddingTop="@dimen/margin_16"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
