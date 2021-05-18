@@ -3,7 +3,6 @@ package com.moviedb.di.component
 import android.app.Application
 import com.moviedb.MovieDBApplication
 import com.moviedb.di.module.*
-import com.triplink.di.module.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

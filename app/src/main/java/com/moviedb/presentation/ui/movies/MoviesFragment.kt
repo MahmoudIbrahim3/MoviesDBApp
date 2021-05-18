@@ -18,7 +18,9 @@ import com.moviedb.presentation.ui.base.BaseFragment
 import com.moviedb.AppConst
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_movies.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import javax.inject.Inject
 
 class MoviesFragment : BaseFragment() {
@@ -117,11 +119,21 @@ class MoviesFragment : BaseFragment() {
         lifecycleScope.launch {
             adapter.submitData(data)
         }
+
+        lifecycleScope.launch {
+            try {
+                delay(1000)
+                showFirstArticleForTwoPane()
+            }
+            catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
     }
 
     private fun showFirstArticleForTwoPane() {
         if (twoPane) {
-            val arg = setUpBundle(adapter.snapshot().items[0])
+            val arg = setUpBundle(adapter.snapshot().items.first())
             navigateToMovieDetailsFragment(arg)
         }
     }

@@ -1,4 +1,4 @@
-package com.triplink.di.module
+package com.moviedb.di.module
 
 import com.moviedb.MainActivity
 import com.moviedb.di.module.FragmentModule

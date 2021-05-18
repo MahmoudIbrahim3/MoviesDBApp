@@ -6,7 +6,6 @@
     <string name="not_found">Not found</string>
     <string name="internet_connection_error">Internet connection error, please check your connection.</string>
     <string name="ok">Ok</string>
-    <string name="no_data">No data</string>
     <string name="popular_movies">Popular Movies</string>
     <string name="overview">Overview</string>
     <string name="user_score">User Score</string>
