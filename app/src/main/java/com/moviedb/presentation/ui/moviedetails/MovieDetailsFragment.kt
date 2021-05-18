@@ -78,6 +78,10 @@ class MovieDetailsFragment : BaseFragment() {
             .load(getString(R.string.base_url_image) + data.backdrop_path)
             .into(ivBackImage)
 
+        Glide.with(this)
+            .load(getString(R.string.base_url_image) + data.poster_path)
+            .into(ivPosterImage)
+
         tvOverview.text = data.overview
         tvMovieTitle.text = data.title
 

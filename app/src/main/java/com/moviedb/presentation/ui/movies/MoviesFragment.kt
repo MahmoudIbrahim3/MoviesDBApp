@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import com.google.gson.Gson
+import androidx.paging.PagingData
 import com.moviedb.MainActivity
 import com.moviedb.R
 import com.moviedb.core.entities.MovieEntity
@@ -19,6 +20,7 @@ import com.moviedb.presentation.ui.base.BaseFragment
 import com.moviedb.presentation.utils.AppConst
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_movies.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MoviesFragment : BaseFragment() {
@@ -28,7 +30,7 @@ class MoviesFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: MoviesViewModel
-    private lateinit var adapter: MoviesRecyclerViewAdapter
+    private lateinit var adapter: MovieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -62,7 +64,10 @@ class MoviesFragment : BaseFragment() {
     }
 
     private fun loadPopularMovies() {
-        viewModel.loadPopularMovies(1)
+        if(viewModel.moviesLiveData.value == null)
+            viewModel.loadPopularMovies()
+        else
+            viewModel.moviesLiveData.value = viewModel.moviesLiveData.value
     }
 
     override fun onStart() {
@@ -82,26 +87,16 @@ class MoviesFragment : BaseFragment() {
     }
 
     private fun setupRecyclerView() {
-        adapter = MoviesRecyclerViewAdapter()
-        rvItems.adapter = adapter
+        adapter = MovieAdapter()
+        rvItems.adapter = adapter.withLoadStateFooter(
+            MovieLoadingAdapter { adapter.retry() }
+        )
     }
 
     private fun initPopularMoviesLiveData() {
         viewModel.moviesLiveData.observe(viewLifecycleOwner, Observer {
-            when(it) {
-                is DataResource.Loading ->
-                    startLoading(swipeToRefresh)
-                is DataResource.Success -> {
-                    stopLoading(swipeToRefresh)
-                    renderData(it.value)
-                    viewModel.moviesLiveData.value = DataResource.NoThing
-                }
-                is DataResource.Failure -> {
-                    stopLoading(swipeToRefresh)
-                    onLoadDataFailure(it.errorEntity)
-                    viewModel.moviesLiveData.value = DataResource.NoThing
-                }
-            }
+            stopLoading(swipeToRefresh)
+            renderData(it)
         })
     }
 
@@ -126,16 +121,16 @@ class MoviesFragment : BaseFragment() {
         navHostFragment.navController.navigate(R.id.movieDetailsFragment, arg)
     }
 
-    private fun renderData(data: PopularMovies) {
-        adapter.resetItems()
-        adapter.addItems(data.results)
-        adapter.notifyDataSetChanged()
-        showFirstArticleForTwoPane()
+    private fun renderData(data: PagingData<MovieEntity>) {
+        lifecycleScope.launch {
+            adapter.submitData(data)
+            showFirstArticleForTwoPane()
+        }
     }
 
     private fun showFirstArticleForTwoPane() {
         if (twoPane) {
-            val arg = setUpBundle(adapter.getItems()[0])
+            val arg = setUpBundle(adapter.snapshot().items[0])
             navigateToMovieDetailsFragment(arg)
         }
     }
@@ -149,8 +144,7 @@ class MoviesFragment : BaseFragment() {
 
     private fun initSwipeToRefresh() {
         swipeToRefresh.setOnRefreshListener {
-            adapter.resetItems()
-            loadPopularMovies()
+            adapter.refresh()
         }
     }
 }
