@@ -6,6 +6,7 @@ import com.moviedb.di.ViewModelFactory
 import com.moviedb.di.ViewModelKey
 import com.moviedb.presentation.ui.moviedetails.MovieDetailsViewModel
 import com.moviedb.presentation.ui.movies.MoviesViewModel
+import com.moviedb.presentation.ui.splash.SplashViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -15,6 +16,11 @@ abstract class ViewModelModule {
 
     @Binds
     abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SplashViewModel::class)
+    abstract fun bindSplashViewModel(splashViewModel: SplashViewModel): ViewModel
 
     @Binds
     @IntoMap

@@ -33,7 +33,7 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:srcCompat="@drawable/image_banner_placeholder"
-                    app:layout_constraintDimensionRatio="1:0.6"
+                    app:layout_constraintDimensionRatio="1:0.57"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -125,18 +125,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_16"
+                tools:visibility="visible"
                 android:visibility="gone"
                 tools:progress="75"
                 app:indicatorColor="@color/colorAccent"
                 app:trackColor="@color/track_progress_color"
                 app:layout_constraintTop_toBottomOf="@id/tvYear"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintEnd_toStartOf="@id/tvUserScoreLabel"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvScorePercentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/SecondaryTextView"
+                tools:visibility="visible"
                 android:visibility="gone"
                 android:textStyle="bold"
                 android:textColor="@color/white"
@@ -151,14 +153,44 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/PrimaryTextView"
+                tools:visibility="visible"
                 android:visibility="gone"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:text="@string/user_score"
                 android:layout_marginStart="@dimen/margin_12"
-                app:layout_constraintStart_toEndOf="@id/cpUserScore"
+                android:layout_marginEnd="@dimen/margin_24"
+                app:layout_constraintEnd_toStartOf="@id/viewDividerScoreVertical"
                 app:layout_constraintTop_toTopOf="@id/cpUserScore"
                 app:layout_constraintBottom_toBottomOf="@id/cpUserScore"/>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/viewDividerScoreVertical"
+                android:layout_width="@dimen/margin_half"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:layout_marginTop="@dimen/margin_8"
+                android:layout_marginBottom="@dimen/margin_8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cpUserScore"
+                app:layout_constraintBottom_toBottomOf="@id/cpUserScore"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPlayTrailer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/play_trailer"
+                style="@style/PrimaryTextView"
+                tools:visibility="visible"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                android:drawableStart="@drawable/ic_baseline_play_arrow_24"
+                android:drawablePadding="@dimen/margin_8"
+                android:layout_marginStart="@dimen/margin_24"
+                app:layout_constraintStart_toEndOf="@id/viewDividerScoreVertical"
+                app:layout_constraintTop_toTopOf="@id/viewDividerScoreVertical"
+                app:layout_constraintBottom_toBottomOf="@id/viewDividerScoreVertical"/>
 
             <View
                 android:id="@+id/divider1"

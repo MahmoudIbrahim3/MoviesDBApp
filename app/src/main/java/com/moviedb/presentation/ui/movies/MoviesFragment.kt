@@ -85,8 +85,8 @@ class MoviesFragment : BaseFragment() {
 
     private fun initPopularMoviesLiveData() {
         viewModel.moviesLiveData.observe(viewLifecycleOwner, Observer {
-            stopLoading(swipeToRefresh)
             renderData(it)
+            stopLoading(swipeToRefresh)
         })
     }
 
@@ -105,8 +105,10 @@ class MoviesFragment : BaseFragment() {
     }
 
     private fun loadPopularMovies() {
-        if (viewModel.moviesLiveData.value == null)
+        if (viewModel.moviesLiveData.value == null) {
+            startLoading(swipeToRefresh)
             viewModel.loadPopularMovies()
+        }
         else
             viewModel.moviesLiveData.value = viewModel.moviesLiveData.value
     }
@@ -114,7 +116,6 @@ class MoviesFragment : BaseFragment() {
     private fun renderData(data: PagingData<MovieEntity>) {
         lifecycleScope.launch {
             adapter.submitData(data)
-            showFirstArticleForTwoPane()
         }
     }
 

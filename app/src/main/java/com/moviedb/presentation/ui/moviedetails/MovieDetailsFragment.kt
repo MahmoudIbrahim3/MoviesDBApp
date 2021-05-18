@@ -45,14 +45,24 @@ class MovieDetailsFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if(!twoPane) hideActionBar()
+        if(!twoPane)
+            setUpActionBar()
         initViewModel()
         initMovieDetailsLiveData()
         loadMovieDetails()
     }
 
-    private fun hideActionBar() {
-        (activity as MainActivity).hideActionBar()
+
+    private fun setUpActionBar() {
+        val act = (activity as MainActivity)
+        act.hideActionBar()
+
+        toolbar.title = ""
+        act.setSupportActionBar(toolbar)
+        act.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationOnClickListener {
+            act.onBackPressed()
+        }
     }
 
     private fun initViewModel() {
@@ -122,8 +132,7 @@ class MovieDetailsFragment : BaseFragment() {
             tvScorePercentage.text = "$percent%"
         }
 
-        if(!twoPane)
-            setUpActionBar()
+        tvPlayTrailer.visibility = View.VISIBLE
     }
 
     private fun parseRuntime(runtime: Int?): String {
@@ -147,15 +156,5 @@ class MovieDetailsFragment : BaseFragment() {
             return result
         }
         return ""
-    }
-
-    private fun setUpActionBar() {
-        toolbar.title = ""
-        val act = (activity as MainActivity)
-        act.setSupportActionBar(toolbar)
-        act.supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.setNavigationOnClickListener {
-            act.onBackPressed()
-        }
     }
 }
