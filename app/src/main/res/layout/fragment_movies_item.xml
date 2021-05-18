@@ -20,7 +20,7 @@
             android:id="@+id/ivPosterImage"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:srcCompat="@drawable/ic_launcher_background"
+            app:srcCompat="@drawable/image_poster_placeholder"
             app:layout_constraintDimensionRatio="1.5:2"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
