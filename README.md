@@ -22,6 +22,10 @@ MoviesDB App
 
 * I applied the dependency injection using `Dagger2`, you will see it in a separate package called `di` under the `app` module .
 
+* For movies list, I used the `Paging` component of Jetpack to handle the paging and infinite scrolling.
+
+* I used the `navigation` component to navigate between fragments.
+
 * App display a list of movies. Clicking on a movie displays some details of that movie.
 On `Tablet landscape`, the app show two panes on the same screen, one for the list of movies and the second for the movie details.
 On the other cases the app show the list of popular movies in a separate screen, and when clicking on movie, the details show in another separate screen.
@@ -34,6 +38,3 @@ Like the following screenshoots:
     ![tablet_landscape](https://user-images.githubusercontent.com/17904163/118707246-972e8180-b81a-11eb-9ef5-5c48fd77697c.png)
 
 
-* For movies list, I used the `Paging` component of Jetpack to handle the paging and infinite scrolling.
-
-* I used the `navigation` component to navigate between fragments.
