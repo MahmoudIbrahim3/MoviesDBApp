@@ -42,7 +42,7 @@ class MovieAdapter:
                 tvTitle.text = title
                 tvDescription.text = overview
                 release_date?.let {
-                    tvDate.text = AppUtils.formatDate(context, it)
+                    tvDate.text = AppUtils.formatDateForMovieListItem(it)
                 }
 
                 Glide.with(context)

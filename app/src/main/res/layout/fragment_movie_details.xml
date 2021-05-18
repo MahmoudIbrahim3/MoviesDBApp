@@ -22,7 +22,7 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar"
-            android:background="@color/dark">
+            android:background="@color/colorPrimary">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -83,7 +83,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/colorPrimary"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".presentation.ui.tripdetails.TripDetailsFragment"
         tools:showIn="@layout/fragment_movie_details">
@@ -91,8 +91,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/margin_16"
-            android:background="@color/dark">
+            android:background="@color/colorPrimary">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvMovieTitle"
@@ -102,16 +101,65 @@
                 android:textColor="@color/white"
                 tools:text="@tools:sample/lorem"
                 android:layout_marginStart="@dimen/margin_16"
-                android:paddingBottom="@dimen/margin_16"
+                android:layout_marginTop="@dimen/margin_16"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintStart_toEndOf="@id/ivPosterImage"
                 app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/PrimaryTextView"
+                android:textColor="@color/secondary_text"
+                tools:text="(2021)"
+                android:layout_marginStart="@dimen/margin_4"
+                app:layout_constraintStart_toEndOf="@id/tvMovieTitle"
+                app:layout_constraintTop_toTopOf="@id/tvMovieTitle"
+                app:layout_constraintBottom_toBottomOf="@id/tvMovieTitle"/>
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_half"
+                android:layout_marginTop="@dimen/margin_16"
+                app:layout_constraintTop_toBottomOf="@id/tvMovieTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/black"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDateAndGenres"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/PrimaryTextView"
+                android:textColor="@color/white"
+                android:background="@color/colorPrimaryDark"
+                tools:text="@tools:sample/lorem"
+                android:gravity="center"
+                android:padding="@dimen/margin_8"
+                android:layout_marginStart="@dimen/margin_4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider1"
+                />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_half"
+                app:layout_constraintTop_toBottomOf="@id/tvDateAndGenres"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:background="@color/black"
+                />
 
             <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/sbUserScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/tvMovieTitle"
+                app:layout_constraintTop_toBottomOf="@id/divider2"
                 app:layout_constraintStart_toStartOf="parent"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -135,8 +183,8 @@
                 style="@style/LargeTextView"
                 android:textColor="@color/white"
                 android:text="@string/overview"
-                android:layout_marginStart="@dimen/margin_16"
-                app:layout_constraintStart_toEndOf="@id/ivPosterImage"
+                android:layout_marginTop="@dimen/margin_16"
+                app:layout_constraintStart_toStartOf="@id/tvMovieTitle"
                 app:layout_constraintTop_toBottomOf="@id/sbUserScore"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -147,9 +195,11 @@
                 android:textColor="@color/white"
                 tools:text="@tools:sample/lorem"
                 android:layout_marginTop="@dimen/margin_8"
-                android:layout_marginStart="@dimen/margin_16"
-                app:layout_constraintStart_toEndOf="@id/ivPosterImage"
-                app:layout_constraintTop_toBottomOf="@id/tvOverViewLabel"/>
+                android:layout_marginBottom="@dimen/margin_16"
+                app:layout_constraintStart_toStartOf="@id/tvMovieTitle"
+                app:layout_constraintTop_toBottomOf="@id/tvOverViewLabel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
 
             <include layout="@layout/layout_screen_loading"/>
 

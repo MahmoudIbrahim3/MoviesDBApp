@@ -16,7 +16,7 @@ data class MovieDetailsEntity (
 	val poster_path : String,
 	val production_companies : List<ProductionCompanies>,
 	val production_countries : List<ProductionCountries>,
-	val release_date : String,
+	val release_date : String?,
 	val revenue : Int,
 	val runtime : Int,
 	val spoken_languages : List<SpokenLanguages>,

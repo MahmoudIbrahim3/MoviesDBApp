@@ -9,11 +9,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.moviedb.MainActivity
 import com.moviedb.R
+import com.moviedb.core.entities.Genres
 import com.moviedb.core.entities.MovieDetailsEntity
 import com.moviedb.data.utils.DataResource
 import com.moviedb.di.ViewModelFactory
 import com.moviedb.presentation.ui.base.BaseFragment
 import com.moviedb.presentation.utils.AppConst
+import com.moviedb.presentation.utils.AppUtils
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import kotlinx.android.synthetic.main.fragment_movie_details.toolbar
@@ -85,7 +87,24 @@ class MovieDetailsFragment : BaseFragment() {
         tvOverview.text = data.overview
         tvMovieTitle.text = data.title
 
+        data.release_date?.let {
+            tvYear.text = AppUtils.fetchYear(it)
+            tvDateAndGenres.text = AppUtils.formatDateForMovieDetails(it) + " • " +
+                    AppUtils.getRunTime(data.runtime) + "\n" +
+                    fetchGenres(data.genres)
+        }
+
         setUpActionBar()
+    }
+
+    private fun fetchGenres(genres: List<Genres>): String {
+        var result = ""
+        for(i in genres.indices) {
+            result += genres[i].name
+            if(i < genres.size - 1)
+                result += ", "
+        }
+        return result
     }
 
     private fun setUpActionBar() {
