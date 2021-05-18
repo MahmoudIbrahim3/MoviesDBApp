@@ -14,7 +14,7 @@ import com.moviedb.core.entities.MovieDetailsEntity
 import com.moviedb.data.utils.DataResource
 import com.moviedb.di.ViewModelFactory
 import com.moviedb.presentation.ui.base.BaseFragment
-import com.moviedb.presentation.utils.AppConst
+import com.moviedb.AppConst
 import com.moviedb.presentation.utils.DateUtils
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_movie_details.*
@@ -27,6 +27,7 @@ class MovieDetailsFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: MovieDetailsViewModel
+    private var twoPane: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -37,13 +38,14 @@ class MovieDetailsFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        twoPane = requireContext().resources.getBoolean(R.bool.isTwoPane)
         return inflater.inflate(R.layout.fragment_movie_details, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        hideActionBar()
+        if(!twoPane) hideActionBar()
         initViewModel()
         initMovieDetailsLiveData()
         loadMovieDetails()
@@ -120,7 +122,8 @@ class MovieDetailsFragment : BaseFragment() {
             tvScorePercentage.text = "$percent%"
         }
 
-        setUpActionBar()
+        if(!twoPane)
+            setUpActionBar()
     }
 
     private fun parseRuntime(runtime: Int?): String {

@@ -15,7 +15,7 @@ import com.moviedb.R
 import com.moviedb.core.entities.MovieEntity
 import com.moviedb.di.ViewModelFactory
 import com.moviedb.presentation.ui.base.BaseFragment
-import com.moviedb.presentation.utils.AppConst
+import com.moviedb.AppConst
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.coroutines.launch

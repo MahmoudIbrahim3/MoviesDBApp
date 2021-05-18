@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import com.moviedb.core.entities.MovieEntity
 import com.moviedb.core.gateways.MovieGateWay
 import com.moviedb.data.remote.api.MovieApi
-import com.moviedb.presentation.utils.AppConst
+import com.moviedb.AppConst
 import kotlinx.coroutines.flow.Flow
 
 class MovieRepository(private val movieApi: MovieApi): MovieGateWay {

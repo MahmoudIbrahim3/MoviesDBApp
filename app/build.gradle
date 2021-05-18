@@ -57,7 +57,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"
 
-    def logging_version = '4.0.0'
+    def logging_version = '4.8.1'
     implementation "com.squareup.okhttp3:logging-interceptor:$logging_version"
 
     def glide_version = "4.11.0"

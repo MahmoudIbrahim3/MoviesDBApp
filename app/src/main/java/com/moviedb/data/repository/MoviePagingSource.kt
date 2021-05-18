@@ -3,7 +3,7 @@ package com.moviedb.data.repository
 import androidx.paging.PagingSource
 import com.moviedb.core.entities.MovieEntity
 import com.moviedb.data.remote.api.MovieApi
-import com.moviedb.presentation.utils.AppConst
+import com.moviedb.AppConst
 import retrofit2.HttpException
 import java.io.IOException
 
