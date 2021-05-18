@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.moviedb.R
 import com.moviedb.core.entities.MovieEntity
-import com.moviedb.presentation.utils.AppUtils
+import com.moviedb.presentation.utils.DateUtils
 import com.moviedb.presentation.utils.DiffUtilCallBack
 
 class MovieAdapter:
@@ -42,11 +42,13 @@ class MovieAdapter:
                 tvTitle.text = title
                 tvDescription.text = overview
                 release_date?.let {
-                    tvDate.text = AppUtils.formatDateForMovieListItem(it)
+                    tvDate.text = DateUtils.formatDateForMovieListItem(it)
                 }
 
                 Glide.with(context)
                     .load(context.getString(R.string.base_url_image) + poster_path)
+                    .placeholder(R.drawable.image_poster_placeholder)
+                    .error(R.drawable.image_poster_placeholder)
                     .into(ivPosterImage)
 
                 itemView.setOnClickListener {

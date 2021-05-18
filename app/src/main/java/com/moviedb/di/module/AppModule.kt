@@ -14,10 +14,4 @@ object AppModule {
     @Provides
     @Singleton
     fun provideContext(application: Application): Context = application
-
-    @JvmStatic
-    @Provides
-    @Singleton
-    fun provideSharedPrefs(application: Application): SharedPreferences =
-        application.getSharedPreferences("moviedb-shared-prefs", Context.MODE_PRIVATE)
 }

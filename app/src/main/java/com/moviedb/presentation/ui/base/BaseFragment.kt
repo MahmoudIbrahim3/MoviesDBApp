@@ -8,15 +8,10 @@ import androidx.fragment.app.Fragment
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import com.moviedb.R
-import com.moviedb.data.local.DataManager
 import com.moviedb.data.utils.ErrorEntity
 import okhttp3.ResponseBody
-import javax.inject.Inject
 
 open class BaseFragment: Fragment(), BaseListener {
-
-    @Inject
-    lateinit var dataManager: DataManager
 
     override fun startLoading(viewLoader: View) {
         if (viewLoader is SwipeRefreshLayout)

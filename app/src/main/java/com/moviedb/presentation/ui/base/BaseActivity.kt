@@ -10,16 +10,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.snackbar.Snackbar
 import com.moviedb.BuildConfig
 import com.moviedb.R
-import com.moviedb.data.local.DataManager
 import com.moviedb.data.utils.ErrorEntity
 import okhttp3.ResponseBody
 import timber.log.Timber
-import javax.inject.Inject
 
 open class BaseActivity: AppCompatActivity(), BaseListener {
-
-    @Inject
-    lateinit var dataManager: DataManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

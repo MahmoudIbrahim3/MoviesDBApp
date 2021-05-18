@@ -5,10 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.moviedb.core.entities.MovieEntity
-import com.moviedb.core.entities.PopularMovies
 import com.moviedb.data.Interactors
-import com.moviedb.data.utils.DataResource
-import com.moviedb.data.utils.networkBoundResource
 import com.moviedb.presentation.ui.base.BaseViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest

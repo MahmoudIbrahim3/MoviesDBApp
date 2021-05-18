@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MainActivity</string>
+    <string name="app_name">Movies App</string>
 
     <string name="server_error">Unexpected server error</string>
     <string name="error">Error</string>
